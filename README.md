@@ -1,3 +1,7 @@
+# Preview
+
+![Preview](http://images2017.cnblogs.com/blog/105416/201707/105416-20170731173956990-1895070647.jpg)
+
 # Install
 
 You can install it via npm:
