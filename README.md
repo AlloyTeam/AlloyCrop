@@ -24,4 +24,4 @@ new AlloyCrop({
 
 ## Demo
 
-![./asset/alloy_crop.png](./asset/alloy_crop.png)
+![./asset/alloycrop.png](./asset/alloycrop.png)
