@@ -1,6 +1,6 @@
-﻿/* AlloyCrop v0.2.0
+﻿/* AlloyCrop v1.0.0
  * By dntzhang
- * Github: https://github.com/AlloyTeam/AlloyFinger/tree/master/alloy_crop
+ * Github: https://github.com/AlloyTeam/AlloyCrop
  */
 ;(function(){
     var AlloyCrop = function (option) {
