@@ -30,5 +30,10 @@ new AlloyCrop({
 
 ![./asset/alloycrop.png](./asset/alloycrop.png)
 
+## Dependencies
+
+* [AlloyFinger](https://github.com/AlloyTeam/AlloyFinger)
+* [css3transform](https://alloyteam.github.io/AlloyTouch/transformjs/)
+
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
