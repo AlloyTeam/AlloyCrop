@@ -171,4 +171,9 @@
         //由于image自带了x\y\z，所有加上translate前缀
         element.translateX = element.translateY = element.translateZ = element.rotateX = element.rotateY = element.rotateZ =element.skewX=element.skewY= element.originX = element.originY = element.originZ = 0;
     }
+
+
+    if (typeof module !== 'undefined' && typeof exports === 'object') {
+        module.exports = Transform;
+    }
 })();
