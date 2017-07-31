@@ -25,3 +25,6 @@ new AlloyCrop({
 ## Demo
 
 ![./asset/alloycrop.png](./asset/alloycrop.png)
+
+# License
+This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
