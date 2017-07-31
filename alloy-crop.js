@@ -1,8 +1,15 @@
-﻿/* AlloyCrop v1.0.0
+﻿/* AlloyCrop v1.0.1
  * By dntzhang
  * Github: https://github.com/AlloyTeam/AlloyCrop
  */
 ;(function(){
+    var AlloyFinger = typeof require === 'function'
+        ? require('alloyfinger')
+        : window.AlloyFinger
+    var Transform = typeof require === 'function'
+        ? require('css3transform')
+        : window.Transform
+
     var AlloyCrop = function (option) {
         this.renderTo = document.body;
         this.canvas = document.createElement("canvas");
@@ -24,7 +31,7 @@
         this.cover.height = window.innerHeight;
         this.cover_ctx = this.cover.getContext("2d");
         this.img = document.createElement("img");
-        
+
         if(option.image_src.substring(0,4).toLowerCase()==='http') {
             this.img.crossOrigin = 'anonymous';//resolve base64 uri bug in safari:"cross-origin image load denied by cross-origin resource sharing policy."
         }

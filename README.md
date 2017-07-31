@@ -10,6 +10,10 @@ You can install it via npm:
 npm install alloycrop
 ```
 
+Or get it from CDN:
+
+[https://unpkg.com/alloycrop@1.0.1/alloy-crop.js](https://unpkg.com/alloycrop@1.0.1/alloy-crop.js)
+
 ## API
 
 ```js
