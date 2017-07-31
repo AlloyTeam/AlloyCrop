@@ -93,12 +93,23 @@
             });
 
             new AlloyFinger(this.cancel_btn, {
+                touchStart:function(){
+                    self.cancel_btn.style.backgroundColor = '#6854e4'
+                },
                 tap: this._cancel.bind(this)
             });
 
             new AlloyFinger(this.ok_btn, {
+                touchStart:function(){
+                    self.ok_btn.style.backgroundColor = '#6854e4'
+                },
                 tap: this._ok.bind(this)
             });
+
+            document.addEventListener('touchend',function(){
+                self.cancel_btn.style.backgroundColor = '#836FFF'
+                self.ok_btn.style.backgroundColor = '#836FFF'
+            })
 
             this.renderCover();
             this.setStyle();

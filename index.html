@@ -22,6 +22,13 @@
             border-radius: 2px;
         }
 
+        button{
+            appearance: none;
+            -webkit-appearance: none;
+            border: 0;
+            background: none;
+        }
+
         #crop_circle_btn {
             color: white;
             background-color: #836FFF;
@@ -33,13 +40,17 @@
             display: inline-block;
             margin-left: 20px;
         }
+
+        #crop_circle_btn:active,#crop_btn:active{
+            background-color: #6854e4;
+        }
     </style>
 </head>
 <body>
     <img src="./asset/test.png" style="display: none;">
     <div id="crop_result" style="text-align: center; padding-top: 30px; height: 230px; line-height: 300px;"></div>
-    <a id="crop_btn">Crop Rect</a>
-    <a id="crop_circle_btn">Crop Circle</a>
+    <button class="btn" id="crop_btn">Crop Rect</button>
+    <button class="btn" id="crop_circle_btn">Crop Circle</button>
 
     <script src="./asset/transform.js"></script>
     <script src="./asset/alloy_finger.js"></script>
