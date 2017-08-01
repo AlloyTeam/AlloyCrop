@@ -113,7 +113,7 @@ this.canvas.height = option.height * this.output;
 });
 ```
 
-	注意，translateX, translateY, translateZ, scaleX, scaleY, scaleZ, rotateX, rotateY, rotateZ, skewX, skewY, originX, originY, originZ 都是 [css3transform 类库](https://alloyteam.github.io/AlloyTouch/transformjs/) 注入到DOM元素上的属性。
+* 注意，translateX, translateY, translateZ, scaleX, scaleY, scaleZ, rotateX, rotateY, rotateZ, skewX, skewY, originX, originY, originZ 都是 [css3transform 类库](https://alloyteam.github.io/AlloyTouch/transformjs/) 注入到DOM元素上的属性。
 
 
 ## Preview
@@ -131,8 +131,6 @@ npm install alloycrop
 Or get it from CDN:
 
 [https://unpkg.com/alloycrop@1.0.1/alloy-crop.js](https://unpkg.com/alloycrop@1.0.1/alloy-crop.js)
-
-
 
 ## Demo
 
