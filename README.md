@@ -78,7 +78,7 @@ this.canvas.height = option.height * this.output;
 
 使用AlloyCrop是可以放大或者缩小再进行裁剪，怎么基于 pinch 的两个手指的中间进行放大呢？所以的秘密都在这个multipointStart里。
 
-*　multipointStart是AlloyFinger抛出的多手指开始碰到屏幕的回调函数，通过evt.touches拿到前两个手指的坐标去计算中心坐标
+* multipointStart是AlloyFinger抛出的多手指开始碰到屏幕的回调函数，通过evt.touches拿到前两个手指的坐标去计算中心坐标
 * 重置 originX 和 originY　到两手指的中心
 * 再重置 translateX 和 translateY　去抹平　originX和originY变更带来的位移
 	
