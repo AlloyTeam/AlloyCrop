@@ -1,4 +1,4 @@
-## AlloyCrop 1.0 发布
+﻿## AlloyCrop 1.0 发布
 
 [AlloyCrop](https://github.com/AlloyTeam/AlloyCrop) 这个项目是8个月前发布的，作为[AlloyFinger](https://github.com/AlloyTeam/AlloyFinger) 的典型案例，发布之后被BAT等其他公司广泛使用。但是发布之后，有两个问题一直没有抽出时间去解决:
 
