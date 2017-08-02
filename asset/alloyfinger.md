@@ -101,6 +101,8 @@ cross本质其实是面积，可以看下面的推导：
 
 主要的一些事件触发原理已经在上面讲解，还有如multipointStart、doubleTap、singleTap、multipointEnd可以看源码，不到200行的代码应该很容易消化。trigger手势事件的同时，touchStart、touchMove、touchEnd和touchCancel同样也可以监听。
 详细的Vector2和AlloyFinger代码可以去Github上查阅：
-[https://github.com/AlloyTeam/AlloyFinger](https://github.com/AlloyTeam/AlloyFinger)
+
+* [https://github.com/AlloyTeam/AlloyFinger](https://github.com/AlloyTeam/AlloyFinger)
 任何意见或者建议欢迎提issue：
-[https://github.com/AlloyTeam/AlloyFinger/issues](https://github.com/AlloyTeam/AlloyFinger/issues)
+
+* [https://github.com/AlloyTeam/AlloyFinger/issues](https://github.com/AlloyTeam/AlloyFinger/issues)
