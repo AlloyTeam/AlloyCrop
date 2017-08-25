@@ -1,4 +1,4 @@
-﻿/* AlloyCrop v1.0.1
+﻿/* AlloyCrop v1.0.2
  * By dntzhang
  * Github: https://github.com/AlloyTeam/AlloyCrop
  */
@@ -27,8 +27,8 @@
         this.croppingBox.style.visibility = "hidden";
         this.cover = document.createElement("canvas");
         this.type = option.type || "png";
-        this.cover.width = window.innerWidth;
-        this.cover.height = window.innerHeight;
+        this.cover.width = document.documentElement.clientWidth;
+        this.cover.height = document.documentElement.clientHeight;
         this.cover_ctx = this.cover.getContext("2d");
         this.img = document.createElement("img");
 
@@ -71,8 +71,8 @@
             new AlloyFinger(this.croppingBox, {
                 multipointStart: function (evt) {
                     //reset origin x and y
-                    var centerX = (evt.touches[0].pageX + evt.touches[1].pageX) / 2;
-                    var centerY = (evt.touches[0].pageY + evt.touches[1].pageY) / 2;
+                    var centerX = (evt.touches[0].clientX + evt.touches[1].clientX) / 2;
+                    var centerY = (evt.touches[0].clientY + evt.touches[1].clientY) / 2;
                     var cr = self.img.getBoundingClientRect();
                     var img_centerX = cr.left + cr.width / 2;
                     var img_centerY = cr.top + cr.height / 2;
@@ -92,7 +92,6 @@
                     self.img.scaleX = self.img.scaleY = self.initScale * evt.zoom;
                 },
                 pressMove: function (evt) {
-
                     self.img.translateX += evt.deltaX;
                     self.img.translateY += evt.deltaY;
                     evt.preventDefault();
