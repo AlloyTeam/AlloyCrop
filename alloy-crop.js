@@ -1,4 +1,4 @@
-﻿/* AlloyCrop v1.0.2
+/* AlloyCrop v1.0.1
  * By dntzhang
  * Github: https://github.com/AlloyTeam/AlloyCrop
  */
@@ -27,8 +27,8 @@
         this.croppingBox.style.visibility = "hidden";
         this.cover = document.createElement("canvas");
         this.type = option.type || "png";
-        this.cover.width = document.documentElement.clientWidth;
-        this.cover.height = document.documentElement.clientHeight;
+        this.cover.width = window.innerWidth;
+        this.cover.height = window.innerHeight;
         this.cover_ctx = this.cover.getContext("2d");
         this.img = document.createElement("img");
 
@@ -65,14 +65,19 @@
             var scaling_x = window.innerWidth / this.img_width,
                 scaling_y = window.innerHeight / this.img_height;
             var scaling = scaling_x > scaling_y ? scaling_y : scaling_x;
-            this.initScale = scaling;
-            this.img.scaleX = this.img.scaleY = scaling;
+            /*this.initScale = scaling;
+            this.originScale = scaling;
+            this.img.scaleX = this.img.scaleY = scaling;*/
+            this.initScale = scaling_x;
+            this.originScale = scaling_x;
+            this.img.scaleX = this.img.scaleY = scaling_x;
+            this.first = 1;
             var self = this;
             new AlloyFinger(this.croppingBox, {
                 multipointStart: function (evt) {
                     //reset origin x and y
-                    var centerX = (evt.touches[0].clientX + evt.touches[1].clientX) / 2;
-                    var centerY = (evt.touches[0].clientY + evt.touches[1].clientY) / 2;
+                    var centerX = (evt.touches[0].pageX + evt.touches[1].pageX) / 2;
+                    var centerY = (evt.touches[0].pageY + evt.touches[1].pageY) / 2;
                     var cr = self.img.getBoundingClientRect();
                     var img_centerX = cr.left + cr.width / 2;
                     var img_centerY = cr.top + cr.height / 2;
@@ -83,38 +88,63 @@
                     self.img.originX = offX / self.img.scaleX;
                     self.img.originY = offY / self.img.scaleY;
                     //reset translateX and translateY
+                    
                     self.img.translateX += offX - preOriginX * self.img.scaleX;
                     self.img.translateY += offY - preOriginY * self.img.scaleX;
 
+                    
+                    if(self.first == 1){
+                        self.img.scaleX = self.img.scaleY = self.initScale * 1.1;
+                        ++self.first;
+                    }
+
                     self.initScale = self.img.scaleX;
+                    
                 },
                 pinch: function (evt) {
-                    self.img.scaleX = self.img.scaleY = self.initScale * evt.zoom;
+                    
+                    var cr = self.img.getBoundingClientRect();
+                    var boxOffY = (document.documentElement.clientHeight - self.height)/2;
+                    
+                    var tempo = evt.zoom;
+                    var dw = (cr.width * tempo - cr.width)/2;
+                    var dh = (cr.height - cr.height * tempo)/2;
+                    if( (self.initScale * tempo <= 1.6 ) && (self.initScale * tempo >= self.originScale) && (dw >= cr.left) && (-dw <= (cr.right - self.width) ) && (dh <= (boxOffY - cr.top) ) && (dh <= (cr.bottom-boxOffY-self.height)) ){
+                        self.img.scaleX = self.img.scaleY = self.initScale * tempo;
+                    }
                 },
                 pressMove: function (evt) {
-                    self.img.translateX += evt.deltaX;
-                    self.img.translateY += evt.deltaY;
+                    var cr = self.img.getBoundingClientRect();
+                    var boxOffY = (document.documentElement.clientHeight - self.height)/2;
+                    if((cr.left + evt.deltaX <= 0) && (cr.right + evt.deltaX >= self.width)){
+                        self.img.translateX += evt.deltaX;  
+                    }
+                    if((boxOffY - cr.top - evt.deltaY >= 0) && (cr.bottom + evt.deltaY - boxOffY>= self.height)){
+                        self.img.translateY += evt.deltaY;
+                    }
                     evt.preventDefault();
                 }
             });
 
             new AlloyFinger(this.cancel_btn, {
                 touchStart:function(){
-                    self.cancel_btn.style.backgroundColor = '#6854e4'
+                    self.cancel_btn.style.backgroundColor = '#ffffff';
+                    self.cancel_btn.style.color = '#3B4152';
                 },
                 tap: this._cancel.bind(this)
             });
 
             new AlloyFinger(this.ok_btn, {
                 touchStart:function(){
-                    self.ok_btn.style.backgroundColor = '#6854e4'
+                    self.ok_btn.style.backgroundColor = '#2bcafd';
+                    self.ok_btn.style.color = '#ffffff';
                 },
                 tap: this._ok.bind(this)
             });
 
             document.addEventListener('touchend',function(){
-                self.cancel_btn.style.backgroundColor = '#836FFF'
-                self.ok_btn.style.backgroundColor = '#836FFF'
+                self.cancel_btn.style.backgroundColor = '#ffffff';
+                self.ok_btn.style.backgroundColor = '#2bcafd';
             })
 
             this.renderCover();
@@ -167,7 +197,7 @@
         },
         setStyle: function () {
             this._css(this.cover, {
-                position: "absolute",
+                position: "fixed",
                 zIndex: "100",
                 left: "0px",
                 top: "0px"
@@ -182,7 +212,7 @@
             });
 
             this._css(this.img, {
-                position: "absolute",
+                position: "fixed",
                 zIndex: "99",
                 left: "50%",
                 // error position in meizu when set the top  50%
@@ -201,7 +231,8 @@
                 height: "40px",
                 bottom: "20px",
                 borderRadius: "2px",
-                backgroundColor: "#836FFF"
+                color: "#ffffff",
+                backgroundColor: "#2bcafd"
 
             });
 
@@ -214,13 +245,15 @@
                 left: "50px",
                 bottom: "20px",
                 borderRadius: "2px",
-                backgroundColor: "#836FFF"
+                color: "#3B4152",
+                backgroundColor: "#ffffff"
 
             });
         },
         crop: function () {
             this.calculateRect();
-            this.ctx.drawImage(this.img, this.crop_rect[0], this.crop_rect[1], this.crop_rect[2], this.crop_rect[3], 0, 0, this.canvas.width, this.canvas.height);
+            //this.ctx.drawImage(this.img, this.crop_rect[0], this.crop_rect[1], this.crop_rect[2], this.crop_rect[3], 0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.drawImage(this.img, this.crop_rect[0], this.crop_rect[1], this.crop_rect[2], this.crop_rect[3], 0, 0, this.crop_rect[2]*this.img.scaleX, this.crop_rect[3]*this.img.scaleY);
 
         },
         calculateRect: function () {
