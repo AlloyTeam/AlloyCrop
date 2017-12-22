@@ -76,7 +76,7 @@ _swipeDirection: function (x1, x2, y1, y2) {
 
 如上图所示，两点之间的距离比值求pinch的scale。这个scale会挂载在event上，让用户反馈给dom的transform或者其他元素的scale属性。
 
-##rotate旋转
+## rotate旋转
 
 ![](http://images2015.cnblogs.com/blog/105416/201611/105416-20161111095946795-1685550144.png)
 
