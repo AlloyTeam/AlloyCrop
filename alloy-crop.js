@@ -116,11 +116,12 @@
                 pressMove: function (evt) {
                     var cr = self.img.getBoundingClientRect();
                     var boxOffY = (document.documentElement.clientHeight - self.height)/2;
-                    if((cr.left + evt.deltaX <= 0) && (cr.right + evt.deltaX >= self.width)){
-                        self.img.translateX += evt.deltaX;  
-                    }
                     if((boxOffY - cr.top - evt.deltaY >= 0) && (cr.bottom + evt.deltaY - boxOffY>= self.height)){
                         self.img.translateY += evt.deltaY;
+                    }
+                    var boxOffX = (document.documentElement.clientWidth - self.width)/2;
+                    if((cr.left + evt.deltaX <= boxOffX) && (cr.right + evt.deltaX - boxOffX >= self.width)){
+                        self.img.translateX += evt.deltaX;  
                     }
                     evt.preventDefault();
                 }
