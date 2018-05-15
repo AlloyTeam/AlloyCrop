@@ -60,6 +60,7 @@
             var crop_btn = document.querySelector("#crop_btn");
             var crop_result = document.querySelector("#crop_result");
             var crop_circle_btn = document.querySelector("#crop_circle_btn");
+            var mAlloyCrop;
 
             function showToolPanel() {
                 crop_btn.style.display = "inline-block";
@@ -77,7 +78,7 @@
             new AlloyFinger(crop_btn, {
                 tap: function () {
                     hideToolPanel();
-                    new AlloyCrop({
+                    mAlloyCrop = new AlloyCrop({
                         image_src: "./asset/test.png",
                         width: 200,
                         height: 100,
@@ -85,9 +86,11 @@
                         ok: function (base64, canvas) {
                             crop_result.appendChild(canvas);
                             crop_result.querySelector("canvas").style.borderRadius = "0%";
+                            mAlloyCrop.destroy();
                             showToolPanel();
                         },
                         cancel: function () {
+                            mAlloyCrop.destroy();
                             showToolPanel();
                         }
                     });
@@ -98,7 +101,7 @@
             new AlloyFinger(crop_circle_btn, {
                 tap: function () {
                     hideToolPanel();
-                    new AlloyCrop({
+                    mAlloyCrop = new AlloyCrop({
                         image_src: "./asset/test.png",
                         circle: true,
                         width: 200,
@@ -107,9 +110,11 @@
                         ok: function (base64, canvas) {
                             crop_result.appendChild(canvas);
                             crop_result.querySelector("canvas").style.borderRadius = "50%";
+                            mAlloyCrop.destroy();
                             showToolPanel();
                         },
                         cancel: function () {
+                            mAlloyCrop.destroy();
                             showToolPanel();
                         }
 

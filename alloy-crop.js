@@ -54,6 +54,8 @@
 
         this.croppingBox.appendChild(this.ok_btn);
         this.croppingBox.appendChild(this.cancel_btn);
+
+        this.alloyFingerList = [];
     };
 
     AlloyCrop.prototype = {
@@ -73,7 +75,7 @@
             this.img.scaleX = this.img.scaleY = scaling_x;
             this.first = 1;
             var self = this;
-            new AlloyFinger(this.croppingBox, {
+            this.alloyFingerList.push(new AlloyFinger(this.croppingBox, {
                 multipointStart: function (evt) {
                     //reset origin x and y
                     var centerX = (evt.touches[0].pageX + evt.touches[1].pageX) / 2;
@@ -125,28 +127,30 @@
                     }
                     evt.preventDefault();
                 }
-            });
+            }));
 
-            new AlloyFinger(this.cancel_btn, {
+            this.alloyFingerList.push(new AlloyFinger(this.cancel_btn, {
                 touchStart:function(){
                     self.cancel_btn.style.backgroundColor = '#ffffff';
                     self.cancel_btn.style.color = '#3B4152';
                 },
                 tap: this._cancel.bind(this)
-            });
+            }));
 
-            new AlloyFinger(this.ok_btn, {
+            this.alloyFingerList.push(new AlloyFinger(this.ok_btn, {
                 touchStart:function(){
                     self.ok_btn.style.backgroundColor = '#2bcafd';
                     self.ok_btn.style.color = '#ffffff';
                 },
                 tap: this._ok.bind(this)
-            });
+            }));
 
-            document.addEventListener('touchend',function(){
-                self.cancel_btn.style.backgroundColor = '#ffffff';
-                self.ok_btn.style.backgroundColor = '#2bcafd';
-            })
+            this.alloyFingerList.push(new AlloyFinger(document, {
+                touchEnd: function () {
+                    self.cancel_btn.style.backgroundColor = '#ffffff';
+                    self.ok_btn.style.backgroundColor = '#2bcafd';
+                }
+            }));
 
             this.renderCover();
             this.setStyle();
@@ -291,6 +295,15 @@
                 if (obj.hasOwnProperty(key)) {
                     el.style[key] = obj[key];
                 }
+            }
+        },
+        destroy: function () {
+            this.alloyFingerList.forEach(function (alloyFinger) {
+                alloyFinger.destroy();
+            });
+            this.renderTo.removeChild(this.croppingBox);
+            for(var key in this) {
+                delete this[key];
             }
         }
     };
