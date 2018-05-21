@@ -61,8 +61,8 @@
     AlloyCrop.prototype = {
         init: function () {
 
-            this.img_width = this.img.width;
-            this.img_height = this.img.height;
+            this.img_width = this.img.naturalWidth;
+            this.img_height = this.img.naturalHeight;
             Transform(this.img,true);
             var scaling_x = window.innerWidth / this.img_width,
                 scaling_y = window.innerHeight / this.img_height;
