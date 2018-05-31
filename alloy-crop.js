@@ -25,6 +25,7 @@
         this.ctx = this.canvas.getContext("2d");
         this.croppingBox = document.createElement("div");
         this.croppingBox.style.visibility = "hidden";
+        this.croppingBox.className = option.className || '';
         this.cover = document.createElement("canvas");
         this.type = option.type || "png";
         this.cover.width = window.innerWidth;
