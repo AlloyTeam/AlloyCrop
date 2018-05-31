@@ -13,8 +13,8 @@
 
 ```js
 new AlloyCrop({
-	className: 'crop-box',
     image_src: "img src",
+	className: 'crop-box',
     circle: true, // optional parameters , the default value is false
     width: 200, // crop width
     height: 100, // crop height
@@ -28,8 +28,8 @@ new AlloyCrop({
 
 参数 |是否必填 | 意义
 ----|------|----
-className | 不必须  | 裁剪 DOM 容器的 class
 image_src | 必须  | 需要裁剪图片的src地址
+className | 不必须  | 裁剪 DOM 容器的 class
 circle | 不必须，默认是false  | 代表选取的是否是圆形还是矩形，默认是矩形，注意:圆形选取裁剪出来的也是正方形图片
 width | 必须  | 选区的宽
 height | 必须  | 选区的高
