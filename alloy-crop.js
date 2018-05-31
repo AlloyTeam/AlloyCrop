@@ -1,4 +1,4 @@
-/* AlloyCrop v1.0.1
+/* AlloyCrop v1.0.4
  * By dntzhang
  * Github: https://github.com/AlloyTeam/AlloyCrop
  */

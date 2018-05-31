@@ -1,7 +1,7 @@
 {
   "name": "alloycrop",
-  "version": "1.0.2",
-  "description": "The best and tiny size mobile cropping component - 做最好且最小的移动裁剪组件",
+  "version": "1.0.4",
+  "description": "The best and tiny size mobile cropping component",
   "main": "alloy-crop.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
