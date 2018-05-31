@@ -14,7 +14,7 @@
 ```js
 new AlloyCrop({
     image_src: "img src",
-	className: 'crop-box',
+    className: 'crop-box',
     circle: true, // optional parameters , the default value is false
     width: 200, // crop width
     height: 100, // crop height
