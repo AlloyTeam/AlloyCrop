@@ -158,16 +158,22 @@
 
         },
         _cancel: function () {
-            this._css(this.croppingBox, {
-                display: "none"
-            });
+            var self = this;
+            setTimeout(function () {
+                self._css(self.croppingBox, {
+                    display: "none"
+                });
+            }, 300);
             this.cancel();
         },
         _ok: function () {
             this.crop();
-            this._css(this.croppingBox, {
-                display: "none"
-            });
+            var self = this;
+            setTimeout(function () {
+                self._css(self.croppingBox, {
+                    display: "none"
+                });
+            }, 300);
             this.ok(this.canvas.toDataURL("image/" + this.type), this.canvas);
         },
         renderCover: function () {
