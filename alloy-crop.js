@@ -7,7 +7,7 @@
         ? require('alloyfinger')
         : window.AlloyFinger
     var Transform = typeof require === 'function'
-        ? require('css3transform')
+        ? require('css3transform').default
         : window.Transform
 
     var AlloyCrop = function (option) {
