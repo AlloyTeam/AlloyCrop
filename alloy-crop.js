@@ -160,7 +160,7 @@
         _cancel: function () {
             var self = this;
             setTimeout(function () {
-                self._css(self.croppingBox, {
+                self.croppingBox && self._css(self.croppingBox, {
                     display: "none"
                 });
             }, 300);
@@ -170,7 +170,7 @@
             this.crop();
             var self = this;
             setTimeout(function () {
-                self._css(self.croppingBox, {
+                self.croppingBox && self._css(self.croppingBox, {
                     display: "none"
                 });
             }, 300);
